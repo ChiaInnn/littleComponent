@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>shoppingCart</title>
+    <link rel="stylesheet" href="shoppingCart.css" type="text/css">
+</head>
+<body>
+<div>
+  <template  id="cartList">
+    <table cellspacing="0">
+      <thead>
+        <tr>
+          <td></td>
+          <td>商品名称</td>
+          <td>商品价格</td>
+          <td>购买数量</td>
+          <td>操作</td>
+        </tr>
+      </thead>
+      <tbody v-if="commidy.length">
+        <tr v-for="(comm,index) in commidy" id="commidyList">
+          <td>
+            <input type="checkbox" v-model="comm.isChoosed" @click="modifyChoose(index)">
+          </td>
+          <td>{{comm.commidyName}}</td>
+          <td>{{comm.price}}</td>
+          <td>
+            <button class="buttonRadius" @click="minusQuantity(index)">-</button>
+            {{comm.quantity}}
+            <button class="buttonRadius" @click="addQuantity(index)">+</button>
+          </td>
+          <td>
+            <button @click="deleteCommidy(index)">删除</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button @click="chooseAll">全选</button>
+          </td>
+          <td colspan="4">总价：￥{{comTotalPrice}}</td>
+        </tr>
+      </tbody>
+      <tbody v-else>
+        <tr>
+          <td>
+            <button @click="chooseAll">全选</button>
+          </td>
+          <td colspan="4">快把商品加入购物车吧！</td>
+        </tr>
+      </tbody>
+    </table>
+  </template>
+</div>
+  <script src="https://unpkg.com/vue"></script>
+  <script src="shoppingCart.js"></script>
+<div>
+
+</div>
+</body>
+</html>
