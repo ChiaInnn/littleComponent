@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        #largeSqu{
+            margin: 80px;
+            /*transform: rotate(315deg);*/
+            width: 100px;
+            height: 100px;
+            /*transition: transform 3s;*/
+            background-color: #0033cc;
+            position: relative;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        #littleCircle{
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: white;
+            width: 80px;
+            height: 80px;
+            z-index: 100;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 80px;
+        }
+        .littleLeftSqu{
+            position: absolute;
+            width: 50px;
+            height: 100px;
+            background-color: #FFFFFF;
+            /*transition: transform 3s;*/
+            border-radius:50px 0 0 50px;
+            z-index: 20;
+        }
+        .littleRightSqu{
+            position: absolute;
+            transform-origin: left center;
+            left: 50px;
+            width: 50px;
+            height: 100px;
+            border-radius:0px 100px 100px 0;
+            background-color: #FFFFFF;
+            z-index: 10;
+        }
+
+
+
+    </style>
+</head>
+<body>
+
+        <div id="largeSqu" class="largeSqu">
+            <div id="littleLeftSqu" class="littleLeftSqu"></div>
+            <div id="littleRightSqu" class="littleRightSqu"></div>
+            <div id="littleCircle">
+
+            </div>
+        </div>
+<script>
+    window.onload=function () {
+        var num = 0;
+        var sum = 360;
+        var interval = setInterval(function (){
+            if(num<360){
+                num++;
+            }
+            var deg = num/sum*360;
+            if(deg>180){
+                document.getElementById("littleLeftSqu").style.backgroundColor = '#0033cc';
+                document.getElementById("littleLeftSqu").style.transformOrigin = 'right center';
+                document.getElementById("littleLeftSqu").style.transform = 'rotate('+deg+'deg)';
+            }else{
+                document.getElementById("littleRightSqu").style.transformOrigin = 'left center';
+                document.getElementById("littleRightSqu").style.transform = 'rotate('+deg+'deg)';
+            }
+            document.getElementById("littleCircle").innerText = parseInt(num/sum*100)+'%'
+        },10)
+    }
+</script>
+
+</body>
+</html>
